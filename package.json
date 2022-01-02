@@ -21,9 +21,9 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/node": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
     "nodemon": "^2.0.15"
   }
 }
