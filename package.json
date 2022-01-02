@@ -2,7 +2,8 @@
   "version": "1.0.0",
   "description": "노마드코더 유튜브 클론 코딩 배운것",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js"
+    "dev": "nodemon --exec babel-node src/init.js",
+    "babel-version": "babel --version"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "@babel/core": "^7.16.7",
     "@babel/node": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
+    "babel-cli": "^6.26.0",
     "nodemon": "^2.0.15"
   }
 }
