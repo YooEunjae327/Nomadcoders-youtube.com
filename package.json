@@ -1,9 +1,10 @@
 {
+  "name": "nomadcoders-youtube.com",
   "version": "1.0.0",
   "description": "노마드코더 유튜브 클론 코딩 배운것",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js",
-    "babel-version": "babel --version"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   },
   "homepage": "https://github.com/YooEunjae327/Nomadcoders-youtube.com#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "mongoose": "^6.1.4",
     "pug": "^3.0.2"
   },
