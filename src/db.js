@@ -117,5 +117,3 @@ db.once('open', handleOpen)
 
 
 
-
-
