@@ -4,7 +4,7 @@
   "description": "노마드코더 유튜브 클론 코딩 배운것",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/init.js"
+    "dev": "npx nodemon --exec babel-node src/init.js"
   },
   "repository": {
     "type": "git",
