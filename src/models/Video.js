@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-export const formatHashtags = (hashtags) => hashtags.split(',').map(word => (word.startsWith('#') ? word : `#${word}`))
 
 const videoSchema = new mongoose.Schema({
     title : { type : String, required : true, trim : true, maxlength : 80},

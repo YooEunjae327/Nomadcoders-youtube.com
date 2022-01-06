@@ -2,13 +2,8 @@ import { response } from 'express'
 import Video from '../models/Video'
 
 export const home = async(req, res) => {
-    try {
-    const videos = await Video.find({})
-    // console.log(videos)
-    return res.render('home', { pagetitle : "Home", videos}) 
-    } catch {
-        console.log('err')
-    }
+    const videos = await Video.find({}).sort({createdAt : 'desc'})
+    return res.render('home', { pagetitle : 'Home', videos})
 }
 export const watch = async (req, res) => {    
     const { id } = req.params
@@ -76,4 +71,16 @@ export const postUpload = async (req, res) => {
     }
 
      
+}
+
+export const deleteVideo = async (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    await Video.findByIdAndDelete(id)
+    // delete video
+    return res.redirect('/')
+}
+
+export const search = (req, res) => {
+    return res.render('search', { pagetitle : 'Search'})
 }
