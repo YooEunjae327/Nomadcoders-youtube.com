@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/YooEunjae327/Nomadcoders-youtube.com#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.2",
     "mongoose": "^6.1.4",
     "pug": "^3.0.2"
