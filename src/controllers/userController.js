@@ -1,4 +1,5 @@
 import User from '../models/User'
+import bcrypt from 'bcrypt'
 
 export const getJoin = (req, res) => res.render('join', { pagetitle : 'Join'})
 export const postJoin = async (req, res) => {
@@ -42,9 +43,18 @@ export const postJoin = async (req, res) => {
 
 export const getLogin = (req, res) => res.render('Login', { pagetitle : 'Login'})
 
-export const postLogin = (req, res) => {
-    // check if account exists
-    // check if password correct
+export const postLogin = async (req, res) => {
+    const { username, password } = req.body
+
+    const user = await User.findOne({ username })
+    if(!user) {
+        return res.status(400).render('login', { pagetitle : 'Login', errorMessage : 'An account with this username does not exists.' })
+    }
+    
+    const ok = await bcrypt.compare(password, user.password)
+    if(!ok) {
+        return res.status(400).render('login', { pagetitle : 'Login', errorMessage : 'An account with this username does not exists.' })
+    }
     res.end()
 }
 
