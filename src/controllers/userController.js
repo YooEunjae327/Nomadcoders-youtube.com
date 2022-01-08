@@ -40,8 +40,13 @@ export const postJoin = async (req, res) => {
 }
 
 
-export const getLogin = (req, res) => res.send('Login')
-export const postLogin = (req, res) => res.send('Login')
+export const getLogin = (req, res) => res.render('Login', { pagetitle : 'Login'})
+
+export const postLogin = (req, res) => {
+    // check if account exists
+    // check if password correct
+    res.end()
+}
 
 export const edit = (req, res) => res.send('Edit User')
 export const remove = (req, res) => res.send('Remove User')
