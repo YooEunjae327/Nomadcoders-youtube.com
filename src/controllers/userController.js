@@ -45,17 +45,18 @@ export const getLogin = (req, res) => res.render('Login', { pagetitle : 'Login'}
 
 export const postLogin = async (req, res) => {
     const { username, password } = req.body
-
+    const pagetitle = 'Login'
     const user = await User.findOne({ username })
     if(!user) {
-        return res.status(400).render('login', { pagetitle : 'Login', errorMessage : 'An account with this username does not exists.' })
+        return res.status(400).render('login', { pagetitle, errorMessage : 'An account with this username does not exists.' })
     }
     
     const ok = await bcrypt.compare(password, user.password)
     if(!ok) {
-        return res.status(400).render('login', { pagetitle : 'Login', errorMessage : 'An account with this username does not exists.' })
+        return res.status(400).render('login', { pagetitle, errorMessage : 'Wrong password' })
     }
-    res.end()
+    console.log('LOG USER IN! COMING SOON!')
+    return res.redirect('/')
 }
 
 export const edit = (req, res) => res.send('Edit User')
