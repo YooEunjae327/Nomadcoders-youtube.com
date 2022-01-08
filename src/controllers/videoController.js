@@ -9,7 +9,7 @@ export const watch = async (req, res) => {
     const { id } = req.params
     const video = await Video.findById(id)
     if(!video) {
-        return res.render('404', { pagetitle : 'Video not found.' })
+        return res.status(404).render('404', { pagetitle : 'Video not found.' })
     }
     return res.render('watch', { pagetitle : video.title, video})
 }
@@ -17,7 +17,7 @@ export const getEdit = async (req, res) => {
     const { id } = req.params
     const video = await Video.findById(id)
     if(!video) {
-        return res.render('404', { pagetitle : 'Video not found.' })
+        return res.status(404).render('404', { pagetitle : 'Video not found.' })
     }
     return res.render('edit', {pagetitle : `Edit:${video.title}`, video})
 }
@@ -64,7 +64,7 @@ export const postUpload = async (req, res) => {
         return res.redirect('/')
     } catch(err) {
         console.log(err)
-        return res.render('upload', {
+        return res.status(400).render('upload', {
         pagetitle : 'Upload Video', 
         errorMessage : err._message, 
         })
