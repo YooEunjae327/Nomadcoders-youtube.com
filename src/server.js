@@ -18,6 +18,14 @@ app.use(
     })
 )
 
+app.use((req, res, next) => {
+    console.log(req)
+    req.sessionStore.all((err, sessions) => {
+        console.log(sessions)
+        next()
+    })
+})
+
 app.use('/', rootRouter)
 app.use('/videos', videoRouter)
 app.use('/user', userRouter)
