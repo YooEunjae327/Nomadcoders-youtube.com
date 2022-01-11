@@ -20,7 +20,7 @@ export const postJoin = async (req, res) => {
     if(exists) {
         return res.status(400).render('join',{ 
             pagetitle,
-            errorMessage : 'This username is already taken.'
+            errorMessage : 'This username/email is already taken.'
     })
     }
 
@@ -148,18 +148,22 @@ export const postEdit = async (req, res) => {
     const { user : { _id } } = req.session
     const { name, email, username, location } = req.body
 
-    // cosnt {
-    //     session : {
-    //         user : { id},
-    //     },
-    //     body : { name, email, username, location}
-    // } = req
-
-
-    await User.findByIdAndUpdate(_id, {
-        name, email, username, location
-    }) 
+    const updatedUser = await User.findByIdAndUpdate(_id, { 
+        name, email, username, location   
+    }, { new : true}) 
+    req.session.user = updatedUser
+    return res.redirect('/users/edit')
 }
+
+export const getChangePassword = (req , res) => { 
+    console.log('hi')
+    return res.render('users/change-password', { pagetitle : 'Change Password'})
+}
+export const postChangePassword = (req , res) => {
+    // send notification
+    return res.redirect('/')
+}
+
 
 export const see = (req, res) => res.see('See User')
 
