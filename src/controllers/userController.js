@@ -144,8 +144,21 @@ export const logout = (req, res) => {
 export const getEdit = (req, res) => {
     return res.render('edit-profile', { pagetitle : 'Edit Profile'})
 }
-export const postEdit = (req, res) => {
-    //
+export const postEdit = async (req, res) => {
+    const { user : { _id } } = req.session
+    const { name, email, username, location } = req.body
+
+    // cosnt {
+    //     session : {
+    //         user : { id},
+    //     },
+    //     body : { name, email, username, location}
+    // } = req
+
+
+    await User.findByIdAndUpdate(_id, {
+        name, email, username, location
+    }) 
 }
 
 export const see = (req, res) => res.see('See User')
