@@ -145,11 +145,16 @@ export const getEdit = (req, res) => {
     return res.render('edit-profile', { pagetitle : 'Edit Profile'})
 }
 export const postEdit = async (req, res) => {
-    const { user : { _id } } = req.session
+    const { file } = req
+    const { user : { _id, avatarUrl  } } = req.session
     const { name, email, username, location } = req.body
 
     const updatedUser = await User.findByIdAndUpdate(_id, { 
-        name, email, username, location   
+        avatarUrl : file ? file.path : avatarUrl,
+        name, 
+        email, 
+        username, 
+        location,
     }, { new : true}) 
     req.session.user = updatedUser
     return res.redirect('/users/edit')
