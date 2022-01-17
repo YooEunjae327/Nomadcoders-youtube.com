@@ -196,5 +196,8 @@ export const postChangePassword = async (req , res) => {
 }
 
 
-export const see = (req, res) => res.see('See User')
+export const see = (req, res) => {
+    const { id } = req.params
+    return res.render('users/profile', { pagetitle : 'User Profile' })
+}
 
