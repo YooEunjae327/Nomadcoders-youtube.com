@@ -4,9 +4,9 @@ import { protectedMiddleware, videoUpload } from "../middlewares"
 
 const videoRouter = express.Router()
 
-videoRouter.route('/upload').all(protectedMiddleware).get(getUpload).post(postUpload)
+videoRouter.route('/upload').all(protectedMiddleware).get(getUpload).post(videoUpload.single('video'), postUpload)
 videoRouter.get('/:id', watch)
-videoRouter.route('/:id/edit').all(protectedMiddleware).get(getEdit).post(videoUpload.single('video'),postEdit)
+videoRouter.route('/:id/edit').all(protectedMiddleware).get(getEdit).post(postEdit)
 videoRouter.route('/:id/delete').all(protectedMiddleware).get(deleteVideo)
 
 
