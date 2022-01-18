@@ -1,5 +1,5 @@
-import { response } from "express"
 import Video from "../models/Video"
+import User from "../models/User"
 
 export const home = async (req, res) => {
   const videos = await Video.find({}).sort({ createdAt: "desc" })
@@ -8,11 +8,12 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params
   const video = await Video.findById(id)
-  console.log(video)
+  const owner = await User.findById(video.owner)
+
   if (!video) {
     return res.status(404).render("404", { pagetitle: "Video not found." })
   }
-  return res.render("watch", { pagetitle: video.title, video })
+  return res.render("watch", { pagetitle: video.title, video, owner })
 }
 export const getEdit = async (req, res) => {
   const { id } = req.params
@@ -63,13 +64,20 @@ export const postUpload = async (req, res) => {
   // await video.save()
 
   try {
-    await Video.create({
+    const newVideo = await Video.create({
       title: title,
       description: description,
       fileUrl: path,
       owner: _id,
       hashtags: Video.formatHashtags(hashtags),
     })
+    const user = await User.findById(_id)
+
+    console.log(newVideo)
+    console.log(newVideo._id)
+
+    user.videos.push(newVideo._id)
+    user.save()
     return res.redirect("/")
   } catch (err) {
     console.log(err)
