@@ -7,6 +7,7 @@ block content
         small=video.createdAt
     div
         small Uploaded by 
+            a(href=`/users/${video.owner}`)  #{owner.name}
     if video.owner == loggedInUser._id
         a(href=`${video.id}/edit`) Edit Video –>
         br
