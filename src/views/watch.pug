@@ -5,6 +5,7 @@ block content
     div
         p=video.description
         small=video.createdAt
-    a(href=`${video.id}/edit`) Edit Video –>
-    br
-    a(href=`${video.id}/delete`) Delete Video –>
+    if video.owner == loggedInUser._id
+        a(href=`${video.id}/edit`) Edit Video –>
+        br
+        a(href=`${video.id}/delete`) Delete Video –>
