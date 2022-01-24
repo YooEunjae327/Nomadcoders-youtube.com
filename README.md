@@ -7,6 +7,7 @@
 /search -> Search
 
 
+
 /users/:id/edit -> Edit user
 /users/logout -> Log Out
 /users/edit -> Edit My Profile
