@@ -1,5 +1,14 @@
 extends base.pug
 
 block content
-    h3 #{video.views} #{video.views === 1 ? 'view' : 'views'}
-    a(href=`${video.id}/edit`) Edit Video ◀
+    video(src='/' + video.fileUrl, controls)
+    div
+        p=video.description
+        small=video.createdAt
+    div
+        small Uploaded by 
+            a(href=`/users/${video.owner}`)  #{owner.name}
+    if video.owner == loggedInUser._id
+        a(href=`${video.id}/edit`) Edit Video –>
+        br
+        a(href=`${video.id}/delete`) Delete Video –>
