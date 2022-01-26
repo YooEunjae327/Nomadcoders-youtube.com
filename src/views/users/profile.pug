@@ -1,4 +1,6 @@
 extends ../base.pug
+include ../mixins/video.pug
 
 block content
-    h1 sex
+    each video in videos
+        +video(video)
