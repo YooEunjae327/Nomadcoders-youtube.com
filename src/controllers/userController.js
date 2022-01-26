@@ -50,12 +50,10 @@ export const postLogin = async (req, res) => {
   const pagetitle = "Login"
   const user = await User.findOne({ username, socialOnly: false })
   if (!user) {
-    return res
-      .status(400)
-      .render("login", {
-        pagetitle,
-        errorMessage: "An account with this username does not exists.",
-      })
+    return res.status(400).render("login", {
+      pagetitle,
+      errorMessage: "An account with this username does not exists.",
+    })
   }
 
   const ok = await bcrypt.compare(password, user.password)
@@ -218,7 +216,6 @@ export const see = async (req, res) => {
   if (!user) {
     return res.status(404).render("404", { pagetitle: "User not found " })
   }
-  const videos = await Video.find({ owner : user._id })
-  console.log(videos)
-  return res.render("users/profile", { pagetitle: user.name, user, videos })
+
+  return res.render("users/profile", { pagetitle: user.name, user })
 }
