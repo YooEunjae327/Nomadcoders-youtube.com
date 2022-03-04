@@ -1,5 +1,9 @@
 import User from "../models/User"
+<<<<<<< HEAD
 import Video from "../models/Video"
+=======
+// import Video from "../models/Video"
+>>>>>>> 329d88c75d397b779330b0b05daa8669a811fa88
 import bcrypt from "bcrypt"
 import fetch from "node-fetch"
 
@@ -212,6 +216,7 @@ export const postChangePassword = async (req, res) => {
 
 export const see = async (req, res) => {
   const { id } = req.params
+<<<<<<< HEAD
   const user = await User.findById(id)
   if (!user) {
     return res.status(404).render("404", { pagetitle: "User not found " })
@@ -219,4 +224,13 @@ export const see = async (req, res) => {
   const videos = await Video.find({ owner: user._id })
   console.log(videos)
   return res.render("users/profile", { pagetitle: user.name, user, videos })
+=======
+  const user = await User.findById(id).populate("videos")
+  console.log(user)
+  if (!user) {
+    return res.status(404).render("404", { pagetitle: "User not found " })
+  }
+
+  return res.render("users/profile", { pagetitle: user.name, user })
+>>>>>>> 329d88c75d397b779330b0b05daa8669a811fa88
 }

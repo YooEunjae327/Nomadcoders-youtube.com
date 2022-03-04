@@ -7,8 +7,13 @@ block content
         small=video.createdAt
     div
         small Uploaded by 
+<<<<<<< HEAD
             a(href=`/users/${video.owner}`)  #{owner.name}
     if video.owner == loggedInUser._id
+=======
+            a(href=`/users/${video.owner._id}`) #{video.owner.name}
+    if video.owner._id == loggedInUser._id
+>>>>>>> 329d88c75d397b779330b0b05daa8669a811fa88
         a(href=`${video.id}/edit`) Edit Video –>
         br
         a(href=`${video.id}/delete`) Delete Video –>

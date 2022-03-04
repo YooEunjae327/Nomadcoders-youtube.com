@@ -1,4 +1,5 @@
 extends ../base.pug
+<<<<<<< HEAD
 include ../mixins/video
 
 block content
@@ -6,3 +7,10 @@ block content
         +video(video)
     else
         li Sorry nothing found.
+=======
+include ../mixins/video.pug
+
+block content
+    each video in user.videos
+        +video(video)
+>>>>>>> 329d88c75d397b779330b0b05daa8669a811fa88
